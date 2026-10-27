@@ -39,7 +39,7 @@ const HOTELS = {
         navLabels: ['Dining', 'Wellness & Spa'],
         services: ['Luxury Accommodation', 'Rooftop Restaurant', 'Fine Dining', 'Conference Hall', 'Airport Assistance'],
         address: ['Plot 48, Road #92/A', 'Gulshan-1, Dhaka 1212'],
-        phone: '+880 2 5555 0148'
+        phone: '+233 050 84 37 837'
     },
 
     b: {
@@ -81,7 +81,7 @@ const HOTELS = {
         navLabels: ['Dining', 'Spa & Wellness'],
         services: ['Beach Villas', 'Spa & Wellness', 'Yoga & Retreats', 'Seaside Dining', 'Airport Transfers'],
         address: ['Marine Drive, Kalatali', 'Cox\u2019s Bazar 4700'],
-        phone: '+880 341 5555 0112'
+        phone: '+233 050 84 37 837'
     }
 };
 
