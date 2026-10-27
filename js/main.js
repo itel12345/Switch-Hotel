@@ -1,11 +1,4 @@
-/* ==========================================================
-   Horizon Hotels - hotel switching prototype
-   1. Hotel content   2. Helpers   3. Rendering
-   4. Switching       5. Interactions   6. Start-up
-   ========================================================== */
 
-/* ---------- 1. Hotel content ----------
-   Edit copy, rooms and photos here. Photo values are Unsplash IDs. */
 const HOTELS = {
     a: {
         name: 'Horizon Gulshan',
@@ -32,7 +25,6 @@ const HOTELS = {
         ],
         roomsText: 'Discover spacious accommodations designed to deliver comfort, relaxation and productivity during your stay.',
         roomTypes: ['Suite', 'Deluxe', 'Executive'],
-        // [image, name, type, bed, feature, size, price]
         rooms: [
             ['1590490360182-c33d57733427', 'Canary Royal Suite', 'Suite', '1 King Bed', 'Panoramic bathroom', '850 sq ft', 'BDT 15,500'],
             ['1618773928121-c32242e63f39', 'Executive Suite', 'Executive', 'King Bed', 'Work desk', '620 sq ft', 'BDT 13,500'],
@@ -96,7 +88,6 @@ const HOTELS = {
 const DEMO_MESSAGE = 'Demo only \u2014 no reservation is made.';
 
 
-/* ---------- 2. Helpers ---------- */
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
@@ -106,15 +97,13 @@ const curtain = $('#cur');
 const switchButton = $('#sw');
 const popup = $('#pop');
 
-let currentHotel = null;   // 'a', 'b', or null while the gateway is showing
+let currentHotel = null;   
 let isTransitioning = false;
 
-// Unsplash photo URL from an ID
 function photoUrl(id, width = 1200) {
     return `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${width}&q=75`;
 }
 
-// Image block; if a photo fails to load it is removed and the charcoal background shows
 function imageBlock(id, alt, width) {
     return `
         <div class="img">
@@ -131,7 +120,6 @@ function showToast(message) {
 }
 
 
-/* ---------- 3. Rendering ---------- */
 function renderSwitchMenu(activeKey) {
     const hotelOptions = ['a', 'b'].map((key) => `
         <button role="menuitem" data-go="${key}">
@@ -309,11 +297,10 @@ function renderFooter(hotel) {
         </footer>`;
 }
 
-// Fill the page with one hotel's content and apply its theme
 function renderHotel(key) {
     const hotel = HOTELS[key];
 
-    document.body.dataset.h = key;                       // switches the CSS theme
+    document.body.dataset.h = key;                       
     document.title = `${hotel.name} \u2014 Horizon Hotels`;
     $('#hn').textContent = hotel.short;
     $('#n2').textContent = hotel.navLabels[0];
@@ -333,8 +320,7 @@ function renderHotel(key) {
 }
 
 
-/* ---------- 4. Switching ---------- */
-// Curtain wipe: cover the screen, swap content while hidden, then reveal.
+
 function runTransition(title, subtitle, swapContent) {
     if (isTransitioning) return;
     isTransitioning = true;
@@ -371,7 +357,6 @@ function showHotel(key) {
     history.replaceState(null, '', `#${key}`);
 }
 
-// target: 'a', 'b' or 'gate'
 function goTo(target) {
     closeSwitchMenu();
     setMobileMenu(false);
@@ -385,7 +370,6 @@ function goTo(target) {
 }
 
 
-/* ---------- 5. Interactions ---------- */
 function closeSwitchMenu() {
     popup.classList.remove('open');
     switchButton.setAttribute('aria-expanded', 'false');
@@ -397,7 +381,6 @@ switchButton.addEventListener('click', (event) => {
     switchButton.setAttribute('aria-expanded', isOpen);
 });
 
-// Mobile menu (slides in from the left)
 function setMobileMenu(open) {
     $('#nav').classList.toggle('open', open);
     $('#scrim').classList.toggle('open', open);
@@ -410,7 +393,6 @@ $('#bg').addEventListener('click', () => {
 
 $('#scrim').addEventListener('click', () => setMobileMenu(false));
 
-// One delegated click handler covers every dynamic button
 document.addEventListener('click', (event) => {
     const goButton = event.target.closest('[data-go]');
     if (goButton) {
@@ -447,21 +429,17 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-// The booking bar is visual only
 document.addEventListener('submit', (event) => {
     event.preventDefault();
     showToast(DEMO_MESSAGE);
 });
 
 
-/* ---------- 6. Start-up ---------- */
-// Gateway photos
 $$('#gate .panel').forEach((panel, index) => {
     const hotel = HOTELS[index === 0 ? 'a' : 'b'];
     panel.querySelector('.img').innerHTML =
         `<img src="${photoUrl(hotel.heroImage, 1400)}" alt="" onerror="this.remove()">`;
 });
 
-// Direct links: index.html#a or index.html#b skip the gateway
 const startHash = location.hash.slice(1);
 if (HOTELS[startHash]) showHotel(startHash);
