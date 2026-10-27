@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Horizon Hotels — Choose your stay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="gate" role="dialog" aria-label="Choose a hotel">
+  <div class="gl">HORIZON HOTELS<small>Two properties. Choose your stay.</small></div>
+  <button class="panel" data-go="a"><div class="img"></div><div class="t"><span class="k">Hotel A · Luxury Urban</span><h2>Horizon Gulshan</h2><p>A contemporary city landmark with rooftop dining, a fine-dining room and suites above the skyline.</p><span class="btn">Explore Hotel</span></div></button>
+  <button class="panel" data-go="b"><div class="img"></div><div class="t"><span class="k">Hotel B · Resort &amp; Wellness</span><h2>Horizon Sands Resort</h2><p>A slow, sunlit seaside retreat with a full spa, daily rituals and villas that open to the water.</p><span class="btn">Explore Hotel</span></div></button>
+</div>
+
+<div id="main" hidden>
+<header><div class="wrap hd">
+  <a href="#top" class="logo"><i></i>HORIZON <b id="hn"></b></a>
+  <nav id="nav" aria-label="Main">
+    <a href="#top">Home</a><a href="#rooms">Rooms &amp; Suites</a><a href="#dining" id="n2">Dining</a><a href="#about" id="n3">Wellness &amp; Spa</a><a href="#offers">Offers</a><a href="#contact">Contact</a>
+  </nav>
+  <div class="acts">
+    <button class="sw" id="sw" aria-haspopup="true" aria-expanded="false" aria-controls="pop"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h13l-4-4M17 17H4l4 4"/></svg><span class="l">Switch Hotel</span></button>
+    <div class="pop" id="pop" role="menu"></div>
+    <button class="btn book" data-demo>Book Your Stay</button>
+    <button class="burger" id="bg" aria-label="Open menu" aria-expanded="false"></button>
+  </div>
+</div><div class="scrim" id="scrim"></div></header>
+<div id="site"></div>
+</div>
+
+<div id="cur" aria-hidden="true"><div><p id="cp"></p><h2 id="ch"></h2></div></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
